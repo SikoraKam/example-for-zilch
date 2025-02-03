@@ -1,17 +1,20 @@
-import { FC, useCallback, useState } from "react";
-import { RefreshControl, View } from "react-native";
-import { ContentContainer } from "../../components/shared/ContentContainer/ContentContainer";
-import { HomeScreenProps } from "./Home.interface";
-import { TransactionCard } from "../../components/TransactionCard/TransactionCard";
+import { FC, useCallback } from "react";
+import { RefreshControl, Switch, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import { Transaction } from "../../types/api.interface";
+import { TransactionCard } from "../../components/TransactionCard/TransactionCard";
+import { ContentContainer } from "../../components/shared/ContentContainer/ContentContainer";
 import { CustomText } from "../../components/shared/CustomText/CustomText";
+import { Transaction } from "../../types/api.interface";
+import { HomeScreenProps } from "./Home.interface";
+import { appTheme } from "../../theme/theme";
 
 export const HomeScreen: FC<HomeScreenProps> = ({
   isLoading,
   transactions,
   onRefresh,
   refreshing,
+  displayOnlyCompleted,
+  toggleCompletedTransactions,
 }) => {
   const renderItem = useCallback(({ item }: { item: Transaction }) => {
     return <TransactionCard transaction={item} />;
@@ -24,6 +27,20 @@ export const HomeScreen: FC<HomeScreenProps> = ({
       safeAreaEdges={["left", "right", "bottom"]}
       isLoading={isLoading}
     >
+      <View className="flex-row gap-5 items-center justify-center my-4">
+        <Switch
+          trackColor={{ false: appTheme.colors.primary, true: "#81b0ff" }}
+          thumbColor={
+            displayOnlyCompleted
+              ? appTheme.colors.primary
+              : appTheme.colors.surface
+          }
+          ios_backgroundColor={appTheme.colors.surface}
+          onValueChange={toggleCompletedTransactions}
+          value={displayOnlyCompleted}
+        />
+        <CustomText>Display only completed</CustomText>
+      </View>
       <FlatList
         data={transactions}
         keyExtractor={(item) => item.id}
