@@ -11,7 +11,7 @@ export const CustomButton: FC<CustomButtonProps> = ({
 }) => {
   return (
     <TouchableOpacity
-      className={`bg-primary border rounded justify-center items-center py-3 ${className}`}
+      className={`bg-primary border rounded justify-center items-center py-3 px-4 ${className}`}
       {...props}
     >
       <CustomText textClassName={`text-white text-center ${textClassName}`}>

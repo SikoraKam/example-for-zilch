@@ -8,12 +8,16 @@ export interface StateStore {
   user: UserState | undefined;
   setUser: (user: UserState) => void;
 
+  premium: boolean;
+  setPremium: (isPremium: boolean) => void;
+
   resetStore: () => void;
 }
 
 const initialState = {
   appInitialized: false,
   user: undefined,
+  premium: false,
 };
 
 export const useAppStore = create<StateStore>()((set) => ({
@@ -22,7 +26,9 @@ export const useAppStore = create<StateStore>()((set) => ({
     set((state) => ({ ...state, appInitialized: isInitialized })),
   setUser: (userPayload: UserState) =>
     set((state) => ({ ...state, user: userPayload })),
+  setPremium: (isPremium: boolean) =>
+    set((state) => ({ ...state, premium: isPremium })),
   resetStore: () => {
-    set({ ...initialState });
+    set({ ...initialState, appInitialized: true });
   },
 }));

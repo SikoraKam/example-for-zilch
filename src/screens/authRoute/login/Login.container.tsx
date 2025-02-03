@@ -5,6 +5,10 @@ import * as yup from "yup";
 import { useAppStore } from "../../../store/store";
 import { FormValues } from "./Login.interface";
 import { LoginScreen } from "./Login.screen";
+import {
+  AsyncStorageKeys,
+  storeDataInAsyncStorage,
+} from "../../../helpers/storage";
 
 const schema = yup
   .object({
@@ -36,6 +40,11 @@ export const Login: FC = () => {
       username: "John",
     };
     setUser(mockUserResponse);
+
+    storeDataInAsyncStorage(
+      AsyncStorageKeys.USER,
+      JSON.stringify(mockUserResponse),
+    );
   };
 
   return (
