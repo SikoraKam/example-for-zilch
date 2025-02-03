@@ -2,11 +2,16 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { LinearGradient } from "expo-linear-gradient";
 import { FC } from "react";
 import { Home } from "../screens/home/Home.container";
-import { Profile } from "../screens/profile/Profile.hooks";
+import { Profile } from "../screens/profile/Profile.container";
 import { appTheme as theme } from "../theme/theme";
 import { ROUTES } from "./routes";
 
-const Drawer = createDrawerNavigator();
+export type DrawerParamList = {
+  [ROUTES.home]: undefined;
+  [ROUTES.profile]: undefined;
+};
+
+const Drawer = createDrawerNavigator<DrawerParamList>();
 
 export const DrawerNavigator: FC = () => {
   return (
@@ -24,7 +29,7 @@ export const DrawerNavigator: FC = () => {
         headerBackground: () => (
           <LinearGradient
             className="flex-1"
-            colors={[theme.colors.primary800, theme.colors.primary700]}
+            colors={[theme.colors.primary900, theme.colors.primary700]}
             locations={[0.3, 0.8]}
           />
         ),
