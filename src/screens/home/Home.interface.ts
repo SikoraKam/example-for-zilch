@@ -5,4 +5,6 @@ export interface HomeScreenProps {
   transactions: Transaction[];
   refreshing: boolean;
   onRefresh(): void;
+  displayOnlyCompleted: boolean;
+  toggleCompletedTransactions(value: boolean): void;
 }
