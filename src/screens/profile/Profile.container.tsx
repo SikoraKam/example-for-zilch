@@ -18,7 +18,7 @@ export const Profile: FC = () => {
       headerRight: () => (
         <CustomButton
           className="bg-white border-0 py-1"
-          textClassName="text-onSurface"
+          textClassName="text-black"
           onPress={resetStore}
         >
           Logout
