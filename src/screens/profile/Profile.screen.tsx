@@ -9,7 +9,6 @@ import { ContentContainer } from "../../components/shared/ContentContainer/Conte
 import { ProfileScreenProps } from "./Profile.interface";
 import { CustomButton } from "../../components/shared/CustomButton/CustomButton";
 import { BuyPremium } from "../../components/BuyPremium/BuyPremium";
-import { CustomText } from "../../components/shared/CustomText/CustomText";
 
 export const ProfileScreen: FC<ProfileScreenProps> = ({
   setFormData,

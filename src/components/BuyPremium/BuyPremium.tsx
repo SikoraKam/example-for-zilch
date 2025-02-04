@@ -1,14 +1,14 @@
 import { FC, PropsWithChildren, useEffect } from "react";
-import { Dimensions, Text, View } from "react-native";
+import { Dimensions, View } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { useAppStore } from "../../store/store";
 import { CustomButton } from "../shared/CustomButton/CustomButton";
 import { CustomText } from "../shared/CustomText/CustomText";
-import { useAppStore } from "../../store/store";
 
 const { height } = Dimensions.get("window");
 
