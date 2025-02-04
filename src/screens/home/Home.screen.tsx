@@ -38,6 +38,7 @@ export const HomeScreen: FC<HomeScreenProps> = ({
           ios_backgroundColor={appTheme.colors.surface}
           onValueChange={toggleCompletedTransactions}
           value={displayOnlyCompleted}
+          accessibilityRole="switch"
         />
         <CustomText>Display only completed</CustomText>
       </View>
