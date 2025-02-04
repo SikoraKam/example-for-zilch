@@ -4,14 +4,14 @@ import { FC, useLayoutEffect, useState } from "react";
 import { CreditCardFormData } from "react-native-credit-card-input";
 import { CustomButton } from "../../components/shared/CustomButton/CustomButton";
 import { showToastError, showToastSuccess } from "../../helpers/toast";
+import { useLogout } from "../../hooks/useLogout";
 import { DrawerParamList } from "../../router/DrawerNavigator";
-import { useAppStore } from "../../store/store";
 import { ProfileScreen } from "./Profile.screen";
 
 export const Profile: FC = () => {
   const [formData, setFormData] = useState<CreditCardFormData>();
   const navigation = useNavigation<DrawerNavigationProp<DrawerParamList>>();
-  const resetStore = useAppStore((state) => state.resetStore);
+  const logout = useLogout();
 
   useLayoutEffect(() => {
     navigation?.setOptions({
@@ -19,13 +19,13 @@ export const Profile: FC = () => {
         <CustomButton
           className="bg-white border-0 py-1"
           textClassName="text-black"
-          onPress={resetStore}
+          onPress={logout}
         >
           Logout
         </CustomButton>
       ),
     });
-  }, [navigation, resetStore]);
+  }, [logout, navigation]);
 
   const handleSaveCreditCard = () => {
     if (formData?.valid) {
